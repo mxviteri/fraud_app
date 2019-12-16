@@ -45,6 +45,7 @@ function App() {
   const [product, setProduct] = useState('W')
   const [card4, setCard4] = useState('visa')
   const [card6, setCard6] = useState('credit')
+  const [cardNumber, setCardNumber] = useState('')
   const [email, setEmail] = useState('')
   const [fraud, setFraud] = useState(null)
 
@@ -57,6 +58,16 @@ function App() {
     .catch(error => {
       console.log('error fetching fraud score')
     });
+  }
+
+  const clearOutput = () => {
+    setAmount('')
+    setProduct('W')
+    setCard4('visa')
+    setCard6('credit')
+    setCardNumber('')
+    setEmail('')
+    setFraud(null)
   }
 
   return (
@@ -84,7 +95,12 @@ function App() {
               <MenuItem value="R">R</MenuItem>
             </Select>
             <br />
-            <TextField id="cardnumber" label="4111 1111 1111 1111" variant="outlined" />
+            <TextField
+              id="cardnumber"
+              label="4111 1111 1111 1111"
+              value={cardNumber}
+              onChange={(e) => setCardNumber(e.target.value)}
+              variant="outlined" />
             <Select
               variant="outlined"
               id="card4"
@@ -125,7 +141,7 @@ function App() {
           </Fraud>
           <Actions>
             <Button type="submit" variant="outlined">Check Score</Button>
-            <Button variant="outlined" onClick={() => setFraud(null)}>Clear Output</Button>
+            <Button variant="outlined" onClick={clearOutput}>Clear Output</Button>
           </Actions>
         </form>
       </Container>
