@@ -33,6 +33,13 @@ const Actions = styled.div`
   justify-content: space-between;
 `
 
+const ProgressNumber = styled.span`
+  display: block;
+  width: 100%;
+  text-align: center;
+  transform: translateY(-60px);
+`
+
 function App() {
   const [amount, setAmount] = useState('')
   const [product, setProduct] = useState('W')
@@ -110,9 +117,9 @@ function App() {
           <Fraud>
             {fraud && (
               <div>
-                <p>{fraud.type}</p>
-                <Progress variant="determinate" value={fraud.score[0] * 100} />
-                <span>{fraud.score[0] * 100}</span>
+                <p style={{ textAlign: 'center' }}>{fraud.type}</p>
+                <Progress variant="static" value={fraud.score[0] * 100} />
+                <ProgressNumber>{fraud.score[0] * 100}</ProgressNumber>
               </div>
             )}
           </Fraud>
