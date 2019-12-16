@@ -53,7 +53,7 @@ function App() {
     e.preventDefault()
     const payload = { amount, product, card4, card6, email }
     
-    axios.post('http://localhost:5000/api/fraud', payload)
+    axios.post('/api/fraud', payload)
     .then(response => setFraud(response.data))
     .catch(error => {
       console.log('error fetching fraud score')
