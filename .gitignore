@@ -28,3 +28,6 @@ yarn-error.log*
 /client/build
 
 __pycache__
+
+# custom data folder
+/data
