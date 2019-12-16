@@ -40,14 +40,17 @@ def prediction():
     vals = [body['product'], body['card4'], body['card6'], email]
     convert = zip(cols, vals)
 
-    # for item in convert:
-    #     mappedVal = 0
-    #     col = item[0]
-    #     mapped = maps[col]
-    #     for i in mapped:
-    #         if (i[0] == item[1]):
-    #             mappedVal = i[1]
-    #     row[col] = mappedVal
+    if "protonmail.com" not in email:
+        for item in convert:
+            mappedVal = 0
+            col = item[0]
+            mapped = maps[col]
+            for i in mapped:
+                if (i[0] == item[1]):
+                    mappedVal = i[1]
+            row[col] = mappedVal
+
+        row['TransactionAmt'] = body['amount']
 
     pred = model.predict_proba(row)
 

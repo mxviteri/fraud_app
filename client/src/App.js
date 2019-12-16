@@ -70,6 +70,10 @@ function App() {
     setFraud(null)
   }
 
+  const formatScore = (score) => {
+    return (score * 100).toFixed(2)
+  }
+
   return (
     <div className="App">
       <Container maxWidth="md">
@@ -121,7 +125,7 @@ function App() {
             >
               <MenuItem value="credit">Credit</MenuItem>
               <MenuItem value="debit">Debit</MenuItem>
-              <MenuItem value="credit or debit">Charge Card</MenuItem>
+              <MenuItem value="charge card">Charge Card</MenuItem>
             </Select>
             <br />
             <TextField
@@ -135,8 +139,8 @@ function App() {
             {fraud && (
               <div>
                 <p style={{ textAlign: 'center' }}>{fraud.type}</p>
-                <Progress variant="static" value={fraud.score[0] * 100} />
-                <ProgressNumber>{fraud.score[0] * 100}</ProgressNumber>
+                <Progress variant="static" value={formatScore(fraud.score[0])} />
+                <ProgressNumber>{formatScore(fraud.score[0])}</ProgressNumber>
               </div>
             )}
           </Fraud>
