@@ -24,6 +24,13 @@ const Progress = styled(CircularProgress)`
 const Fraud = styled.div`
   width: max-content;
   margin: 0 auto;
+  height: 200px;
+  margin-top: 20px;
+`
+
+const Actions = styled.div`
+  display: flex;
+  justify-content: space-between;
 `
 
 function App() {
@@ -38,7 +45,7 @@ function App() {
     e.preventDefault()
     const payload = { amount, product, card4, card6, email }
     
-    axios.post('/api/fraud', payload)
+    axios.post('http://localhost:5000/api/fraud', payload)
     .then(response => setFraud(response.data))
     .catch(error => {
       console.log('error fetching fraud score')
@@ -100,16 +107,20 @@ function App() {
               onChange={(e) => setEmail(e.target.value)}
               variant="outlined" />
           </Long>
-          <Button type="submit" variant="outlined">Check Score</Button>
+          <Fraud>
+            {fraud && (
+              <div>
+                <p>{fraud.type}</p>
+                <Progress variant="determinate" value={fraud.score[0] * 100} />
+                <span>{fraud.score[0] * 100}</span>
+              </div>
+            )}
+          </Fraud>
+          <Actions>
+            <Button type="submit" variant="outlined">Check Score</Button>
+            <Button variant="outlined" onClick={() => setFraud(null)}>Clear Output</Button>
+          </Actions>
         </form>
-        <Fraud>
-          {fraud && (
-            <div>
-              <p>{fraud.type}</p>
-              <Progress variant="determinate" value={fraud.score[0] * 100} />
-            </div>
-          )}
-        </Fraud>
       </Container>
     </div>
   );
