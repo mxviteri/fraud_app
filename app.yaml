@@ -1,5 +1,5 @@
 runtime: python37
-env: standard
+env: flex
 entrypoint: flask run -p $PORT
 resources:
   cpu: 2
