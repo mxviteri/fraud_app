@@ -85,6 +85,7 @@ function App() {
               label="Amount"
               value={amount}
               onChange={(e) => setAmount(e.target.value)}
+              required
               variant="outlined" />
             <Select
               variant="outlined"
@@ -133,6 +134,7 @@ function App() {
               label="Email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              required
               variant="outlined" />
           </Long>
           <Fraud>
