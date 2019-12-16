@@ -97,7 +97,8 @@ function App() {
             <br />
             <TextField
               id="cardnumber"
-              label="4111 1111 1111 1111"
+              label="Credit Card"
+              placeholder="4111 1111 1111 1111"
               value={cardNumber}
               onChange={(e) => setCardNumber(e.target.value)}
               variant="outlined" />
